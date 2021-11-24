@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+     <script src="cb.js"></script>
+    <script>
+        func2(func1);
+    </script> 
+
+    <title>Currecy</title>
+    <style>
+        body{
+            background-color: aqua;
+            font-size: 35px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+    
+
+        <div class="row mt-5 mb-5 ">
+
+            <div class="container" id="root"></div>
+
+        </div>
+
+    </div>
+    
+    <script>
+
+        getData();
+
+        function getData(){
+
+             let url = `https://rest.coinapi.io/v1/assets/BTC`;
+
+            $.ajaxSetup({
+            headers : {   
+                'X-CoinAPI-Key' : '706F1A23-6039-4877-B32F-7A839FE13636'
+            }
+            });
+
+            $.getJSON(url, function(data){
+                
+                console.log(data);
+
+                let obj = data[0];
+                document.getElementById("root").innerHTML = JSON.stringify(obj);
+
+            }) ;
+
+        }
+
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
