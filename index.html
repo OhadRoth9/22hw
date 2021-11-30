@@ -23,11 +23,14 @@
 
         <div class="row mt-5 mb-5 ">
 
-            <select class="form-select md-5" id="select">
-                <option value="Tel Aviv">Tel Aviv</option>
-                <option value="Haifa">Haifa</option>
-                <option value="London">London</option>
-            </select>
+             <div class="col-auto">
+                <input type="text" class="form-control" id="input">
+            </div>
+
+            <div class="col-auto">
+                <button id="btn" class="btn btn-primary mb-3">Click</button>
+            </div>
+
 
             <div class="container" id="root"></div>
 
@@ -36,29 +39,35 @@
     
     <script>
 
-        getData();
+        
 
-        function getData(city = "Tel Aviv"){
+        function getData(city){
 
-             let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=87dedb5e0eb4b978840ae79dbebfa290`;
+          
 
-            $.getJSON(url, function(data){
+                let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=87dedb5e0eb4b978840ae79dbebfa290`;
 
-                let weather = data.weather[0];
-                console.log(weather);
-                document.getElementById("root").innerHTML = `
-                    <p>Main: ${weather.main}</p>
-                    <p>Description: ${weather.description}</p>
-                    <p>Icon: ${weather.icon}</p>
-                    <img src="http://openweathermap.org/img/wn/${weather.icon}@2x.png">
-                `;
-            }) ;
+                $.getJSON(url, function(data){
 
+                    let weather = data.weather[0];
+                    console.log(weather);
+                    document.getElementById("root").innerHTML = `
+                        <p>Main: ${weather.main}</p>
+                        <p>Description: ${weather.description}</p>
+                        <p>Icon: ${weather.icon}</p>
+                        <img src="http://openweathermap.org/img/wn/${weather.icon}@2x.png">
+                    `;
+                }) ;
+            
         }
 
-        document.getElementById("select").addEventListener("change",function(e){
-            getData(e.target.value);
+        $(document).ready(function(){
+            
+            $("#btn").click(function(){
+                getData($("#input").val());       
+            });
         });
+        
         
     </script>
 

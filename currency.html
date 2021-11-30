@@ -35,9 +35,13 @@
     
     <script>
 
-        getData();
+        getData(innerData);
 
-        function getData(){
+        function innerData(data){
+            document.getElementById("root").innerHTML = data;
+        }
+
+        function getData(cb){
 
              let url = `https://rest.coinapi.io/v1/assets/BTC`;
 
@@ -52,7 +56,8 @@
                 console.log(data);
 
                 let obj = data[0];
-                document.getElementById("root").innerHTML = JSON.stringify(obj);
+
+                cb(JSON.stringify(obj));
 
             }) ;
 
